@@ -1,15 +1,13 @@
 {% set name = "chest" %}
 {% set version = "0.2.3" %}
-{% set sha256 = "f2d1030d4720fd4c0cb258c3383d4bab764cfe441bab1366a0d186b0baf4f4d6" %}
 
 package:
   name: {{ name|lower }}
   version: {{ version }}
 
 source:
-  fn: {{ name }}-{{ version }}.tar.gz
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/{{ name }}-{{ version }}.tar.gz
-  sha256: {{ sha256 }}
+  sha256: f2d1030d4720fd4c0cb258c3383d4bab764cfe441bab1366a0d186b0baf4f4d6
 
 build:
   noarch: python
@@ -28,12 +26,15 @@ requirements:
 test:
   requires:
     - python {{ python_min }}
+    - pip
   imports:
     - chest
+  commands:
+    - pip check
 
 about:
   home: https://github.com/ContinuumIO/chest
-  license: BSD 3-Clause
+  license: BSD-3-Clause
   license_family: BSD
   license_file: LICENSE.txt
   summary: 'Simple on-disk dictionary'
